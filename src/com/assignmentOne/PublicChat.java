@@ -26,6 +26,8 @@ public class PublicChat {
 
     public void publicRead(File privateMessage){
         Scanner public_Read = null;
+        // Try block for handling user input and performing corresponding actions
+        //Collaborator => Abinet Tamiru
         try {
             public_Read = new Scanner(privateMessage);
             while(public_Read.hasNextLine()) {
@@ -35,7 +37,11 @@ public class PublicChat {
             }
             public_Read.close();
         } catch (FileNotFoundException e) {
+            // Write the exception to the system log using the systemExceptionHandler
+            //Collaborator => Abinet Tamiru
             systemExceptionHandler.writeSystemLog(e);
+            // Handle the exception using the customExceptionHandler
+            //Collaborator => Abinet Tamiru
             customExceptionHandler.handleException(e);
         }
 
@@ -44,12 +50,18 @@ public class PublicChat {
     public void publicWrite(String privateMessage){
         File publicFile = new File("./Eurakarte.log");
         PrintWriter public_Write = null;
+        // Try block for handling user input and performing corresponding actions
+        //Collaborator => Abinet Tamiru
         try {
             public_Write = new PrintWriter(publicFile);
             public_Write.write(privateMessage);
             public_Write.close();
         } catch (FileNotFoundException e) {
+            // Write the exception to the system log using the systemExceptionHandler
+            //Collaborator => Abinet Tamiru
             systemExceptionHandler.writeSystemLog(e);
+            // Handle the exception using the customExceptionHandler
+            //Collaborator => Abinet Tamiru
             customExceptionHandler.handleException(e);
         }
 

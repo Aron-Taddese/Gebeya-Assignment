@@ -24,6 +24,8 @@ public class FriendList {
 
     public void friendRead(File FriendsList){
         Scanner friendReader = null;
+        // Try block for handling user input and performing corresponding actions
+        //Collaborator => Abinet Tamiru
         try {
             friendReader = new Scanner(FriendsList);
             while(friendReader.hasNextLine()) {
@@ -33,7 +35,11 @@ public class FriendList {
             }
             friendReader.close();
         } catch (FileNotFoundException e) {
+            // Write the exception to the system log using the systemExceptionHandler
+            //Collaborator => Abinet Tamiru
             systemExceptionHandler.writeSystemLog(e);
+            // Handle the exception using the customExceptionHandler
+            //Collaborator => Abinet Tamiru
             customExceptionHandler.handleException(e);
         }
 
@@ -42,12 +48,18 @@ public class FriendList {
     public void friendWrite(String friendsName){
         File friendFile = new File("./friends.list");
         PrintWriter friendNameWriter = null;
+        // Try block for handling user input and performing corresponding actions
+        //Collaborator => Abinet Tamiru
         try {
             friendNameWriter = new PrintWriter(friendFile);
             friendNameWriter.write(friendsName);
             friendNameWriter.close();
         } catch (FileNotFoundException e) {
+            // Write the exception to the system log using the systemExceptionHandler
+            //Collaborator => Abinet Tamiru
             systemExceptionHandler.writeSystemLog(e);
+            // Handle the exception using the customExceptionHandler
+            //Collaborator => Abinet Tamiru
             customExceptionHandler.handleException(e);
         }
 

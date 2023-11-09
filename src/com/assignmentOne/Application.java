@@ -37,11 +37,17 @@ public class Application {
 
             Scanner scanner = new Scanner(System.in);
             int choice = 0;
+            // Try block for handling user input and performing corresponding actions
+            //Collaborator => Abinet Tamiru
             try{
                 choice = scanner.nextInt();
             }
             catch (Exception e){
+                // Write the exception to the system log using the systemExceptionHandler
+                //Collaborator => Abinet Tamiru
                 systemExceptionHandler.writeSystemLog(e);
+                // Handle the exception using the customExceptionHandler
+                //Collaborator => Abinet Tamiru
                 customExceptionHandler.handleException(e);
             }
 
@@ -54,7 +60,8 @@ public class Application {
                     System.out.println("Enter the file from which you want to read?");
                     System.out.println("1: Donut[AFK].log");
                     System.out.println("2: Eurakarte.log");
-
+                    // Try block for handling user input and performing corresponding actions
+                    //Collaborator => Abinet Tamiru
                     try{
                         int choice1 = scanner.nextInt();
                         switch (choice1) {
@@ -72,7 +79,11 @@ public class Application {
                     }
                     catch (Exception e)
                     {
+                        // Write the exception to the system log using the systemExceptionHandler
+                        //Collaborator => Abinet Tamiru
                         systemExceptionHandler.writeSystemLog(e);
+                        // Handle the exception using the customExceptionHandler
+                        //Collaborator => Abinet Tamiru
                         customExceptionHandler.handleException(e);
                     }
                     break;
@@ -81,13 +92,19 @@ public class Application {
                 case 2:
                     System.out.println("Type your message: ");
                     String privateMessage;
+                    // Try block for handling user input and performing corresponding actions
+                    //Collaborator => Abinet Tamiru
                     try{
                         privateMessage = scanner.nextLine();
                         privateChat.privateWrite(privateMessage);
                     }
                     catch (Exception e)
                     {
+                        // Write the exception to the system log using the systemExceptionHandler
+                        //Collaborator => Abinet Tamiru
                         systemExceptionHandler.writeSystemLog(e);
+                        // Handle the exception using the customExceptionHandler
+                        //Collaborator => Abinet Tamiru
                         customExceptionHandler.handleException(e);
                     }
                     break;
@@ -95,6 +112,8 @@ public class Application {
                     System.out.println("Enter the file from which you want to read?");
                     System.out.println("1: Donut[AFK].log");
                     System.out.println("2: Eurakarte.log");
+                    // Try block for handling user input and performing corresponding actions
+                    //Collaborator => Abinet Tamiru
                     try{
                         int choice2 = scanner.nextInt();
                         switch (choice2) {
@@ -111,24 +130,36 @@ public class Application {
                     }
                     catch (Exception e)
                     {
+                        // Write the exception to the system log using the systemExceptionHandler
+                        //Collaborator => Abinet Tamiru
                         systemExceptionHandler.writeSystemLog(e);
+                        // Handle the exception using the customExceptionHandler
+                        //Collaborator => Abinet Tamiru
                         customExceptionHandler.handleException(e);
                     }
                     break;
                 case 4:
                     System.out.println("Type your message: ");
+                    // Try block for handling user input and performing corresponding actions
+                    //Collaborator => Abinet Tamiru
                     try{
                         String publicMessage = scanner.nextLine();
                         publicChat.publicWrite(publicMessage);
                     }
                     catch (Exception e)
                     {
+                        // Write the exception to the system log using the systemExceptionHandler
+                        //Collaborator => Abinet Tamiru
                         systemExceptionHandler.writeSystemLog(e);
+                        // Handle the exception using the customExceptionHandler
+                        //Collaborator => Abinet Tamiru
                         customExceptionHandler.handleException(e);
                     }
                     break;
                 case 5:
                     System.out.println("Enter the path to your friend's list: ");
+                    // Try block for handling user input and performing corresponding actions
+                    //Collaborator => Abinet Tamiru
                     try{
                         String fp = scanner.nextLine();
                         File friendPath = new File(fp);
@@ -136,19 +167,29 @@ public class Application {
                     }
                     catch (Exception e)
                     {
+                        // Write the exception to the system log using the systemExceptionHandler
+                        //Collaborator => Abinet Tamiru
                         systemExceptionHandler.writeSystemLog(e);
+                        // Handle the exception using the customExceptionHandler
+                        //Collaborator => Abinet Tamiru
                         customExceptionHandler.handleException(e);
                     }
                     break;
                 case 6:
                     System.out.println("Write new friend's name: ");
+                    // Try block for handling user input and performing corresponding actions
+                    //Collaborator => Abinet Tamiru
                     try{
                         String friendName = scanner.nextLine();
                         friendList.friendWrite(friendName);
                     }
                     catch (Exception e)
                     {
+                        // Write the exception to the system log using the systemExceptionHandler
+                        //Collaborator => Abinet Tamiru
                         systemExceptionHandler.writeSystemLog(e);
+                        // Handle the exception using the customExceptionHandler
+                        //Collaborator => Abinet Tamiru
                         customExceptionHandler.handleException(e);
                     }
                     break;

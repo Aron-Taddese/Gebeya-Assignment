@@ -25,6 +25,8 @@ public class PrivateChat {
 
         public void privateRead(File privateMessage) {
             Scanner private_Read = null;
+            // Try block for handling user input and performing corresponding actions
+            //Collaborator => Abinet Tamiru
             try {
                 private_Read = new Scanner(privateMessage);
                 while(private_Read.hasNextLine()) {
@@ -34,7 +36,11 @@ public class PrivateChat {
                 }
                 private_Read.close();
             } catch (FileNotFoundException e) {
+                // Write the exception to the system log using the systemExceptionHandler
+                //Collaborator => Abinet Tamiru
                 systemExceptionHandler.writeSystemLog(e);
+                // Handle the exception using the customExceptionHandler
+                //Collaborator => Abinet Tamiru
                 customExceptionHandler.handleException(e);
             }
 
@@ -43,12 +49,18 @@ public class PrivateChat {
         public void privateWrite(String privateMessage){
             File privateFile = new File("./Donut[AFK].log");
             PrintWriter private_Write = null;
+            // Try block for handling user input and performing corresponding actions
+            //Collaborator => Abinet Tamiru
             try {
                 private_Write = new PrintWriter(privateFile);
                 private_Write.write(privateMessage);
                 private_Write.close();
             } catch (FileNotFoundException e) {
+                // Write the exception to the system log using the systemExceptionHandler
+                //Collaborator => Abinet Tamiru
                 systemExceptionHandler.writeSystemLog(e);
+                // Handle the exception using the customExceptionHandler
+                //Collaborator => Abinet Tamiru
                 customExceptionHandler.handleException(e);
             }
 
