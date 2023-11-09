@@ -1,5 +1,8 @@
 package com.assignmentOne;
 
+import ChatExceptions.CustomExceptionHandler;
+import ChatExceptions.SystemExceptionHandler;
+
 import java.io.File;
 import java.util.Scanner;
 
@@ -10,6 +13,13 @@ public class Application {
         PrivateChat privateChat = new PrivateChat();
         PublicChat publicChat = new PublicChat();
         FriendList friendList = new FriendList();
+
+        //instance for SystemExceptionHandler and CustomExceptionHandler
+        //Collaborator => Abinet Tamiru
+        SystemExceptionHandler systemExceptionHandler = new SystemExceptionHandler();
+        CustomExceptionHandler customExceptionHandler = new CustomExceptionHandler();
+
+
         int flag = -1;
         do {
             System.out.println("""
@@ -26,63 +36,121 @@ public class Application {
                     7: Quit""");
 
             Scanner scanner = new Scanner(System.in);
-            int choice = scanner.nextInt();
+            int choice = 0;
+            try{
+                choice = scanner.nextInt();
+            }
+            catch (Exception e){
+                systemExceptionHandler.writeSystemLog(e);
+                customExceptionHandler.handleException(e);
+            }
+
+
+
+
             scanner.nextLine();
             switch (choice) {
                 case 1:
                     System.out.println("Enter the file from which you want to read?");
                     System.out.println("1: Donut[AFK].log");
                     System.out.println("2: Eurakarte.log");
-                    int choice1 = scanner.nextInt();
-                    switch (choice1) {
-                        case 1 -> {
-                            File privatePath = new File("Donut[AFK].log");
-                            privateChat.privateRead(privatePath);
-                        }
-                        case 2 -> {
-                            File privatePath1 = new File("Eurakarte.log");
-                            privateChat.privateRead(privatePath1);
-                        }
-                        default -> System.out.println("Wrong Number Please enter the correct number.");
 
+                    try{
+                        int choice1 = scanner.nextInt();
+                        switch (choice1) {
+                            case 1 -> {
+                                File privatePath = new File("Donut[AFK].log");
+                                privateChat.privateRead(privatePath);
+                            }
+                            case 2 -> {
+                                File privatePath1 = new File("Eurakarte.log");
+                                privateChat.privateRead(privatePath1);
+                            }
+                            default -> System.out.println("Wrong Number Please enter the correct number.");
+
+                        }
                     }
+                    catch (Exception e)
+                    {
+                        systemExceptionHandler.writeSystemLog(e);
+                        customExceptionHandler.handleException(e);
+                    }
+                    break;
+
 
                 case 2:
                     System.out.println("Type your message: ");
-                    String privateMessage = scanner.nextLine();
-                    privateChat.privateWrite(privateMessage);
+                    String privateMessage;
+                    try{
+                        privateMessage = scanner.nextLine();
+                        privateChat.privateWrite(privateMessage);
+                    }
+                    catch (Exception e)
+                    {
+                        systemExceptionHandler.writeSystemLog(e);
+                        customExceptionHandler.handleException(e);
+                    }
                     break;
                 case 3:
                     System.out.println("Enter the file from which you want to read?");
                     System.out.println("1: Donut[AFK].log");
                     System.out.println("2: Eurakarte.log");
-                    int choice2 = scanner.nextInt();
-                    switch (choice2) {
-                        case 1 -> {
-                            File publicPath = new File("Donut[AFK].log");
-                            publicChat.publicRead(publicPath);
+                    try{
+                        int choice2 = scanner.nextInt();
+                        switch (choice2) {
+                            case 1 -> {
+                                File publicPath = new File("Donut[AFK].log");
+                                publicChat.publicRead(publicPath);
+                            }
+                            case 2 -> {
+                                File publicPath1 = new File("Eurakarte.log");
+                                publicChat.publicRead(publicPath1);
+                            }
+                            default -> System.out.println("Wrong Number Please enter the correct number.");
                         }
-                        case 2 -> {
-                            File publicPath1 = new File("Eurakarte.log");
-                            publicChat.publicRead(publicPath1);
-                        }
-                        default -> System.out.println("Wrong Number Please enter the correct number.");
                     }
+                    catch (Exception e)
+                    {
+                        systemExceptionHandler.writeSystemLog(e);
+                        customExceptionHandler.handleException(e);
+                    }
+                    break;
                 case 4:
                     System.out.println("Type your message: ");
-                    String publicMessage = scanner.nextLine();
-                    publicChat.publicWrite(publicMessage);
+                    try{
+                        String publicMessage = scanner.nextLine();
+                        publicChat.publicWrite(publicMessage);
+                    }
+                    catch (Exception e)
+                    {
+                        systemExceptionHandler.writeSystemLog(e);
+                        customExceptionHandler.handleException(e);
+                    }
                     break;
                 case 5:
                     System.out.println("Enter the path to your friend's list: ");
-                    String fp = scanner.nextLine();
-                    File friendPath = new File(fp);
-                    friendList.friendRead(friendPath);
+                    try{
+                        String fp = scanner.nextLine();
+                        File friendPath = new File(fp);
+                        friendList.friendRead(friendPath);
+                    }
+                    catch (Exception e)
+                    {
+                        systemExceptionHandler.writeSystemLog(e);
+                        customExceptionHandler.handleException(e);
+                    }
                     break;
                 case 6:
                     System.out.println("Write new friend's name: ");
-                    String friendName = scanner.nextLine();
-                    friendList.friendWrite(friendName);
+                    try{
+                        String friendName = scanner.nextLine();
+                        friendList.friendWrite(friendName);
+                    }
+                    catch (Exception e)
+                    {
+                        systemExceptionHandler.writeSystemLog(e);
+                        customExceptionHandler.handleException(e);
+                    }
                     break;
                 case 7:
                     System.out.println("""

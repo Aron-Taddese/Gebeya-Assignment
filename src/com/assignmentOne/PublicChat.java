@@ -1,5 +1,8 @@
 package com.assignmentOne;
 
+import ChatExceptions.CustomExceptionHandler;
+import ChatExceptions.SystemExceptionHandler;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -9,6 +12,10 @@ import java.util.Scanner;
 
 public class PublicChat {
 
+    //instance for SystemExceptionHandler and CustomExceptionHandler
+    //Collaborator => Abinet Tamiru
+    SystemExceptionHandler systemExceptionHandler = new SystemExceptionHandler();
+    CustomExceptionHandler customExceptionHandler = new CustomExceptionHandler();
     private final ArrayList<String> publicChatHistory;
 
     public PublicChat() {
@@ -17,20 +24,34 @@ public class PublicChat {
     }
 
 
-    public void publicRead(File privateMessage) throws FileNotFoundException {
-        Scanner public_Read = new Scanner(privateMessage);
-        while(public_Read.hasNextLine()) {
-            String publicInput = public_Read.nextLine();
-            publicChatHistory.add(publicInput);
-            System.out.println(publicChatHistory);
+    public void publicRead(File privateMessage){
+        Scanner public_Read = null;
+        try {
+            public_Read = new Scanner(privateMessage);
+            while(public_Read.hasNextLine()) {
+                String publicInput = public_Read.nextLine();
+                publicChatHistory.add(publicInput);
+                System.out.println(publicChatHistory);
+            }
+            public_Read.close();
+        } catch (FileNotFoundException e) {
+            systemExceptionHandler.writeSystemLog(e);
+            customExceptionHandler.handleException(e);
         }
-        public_Read.close();
+
     }
 
-    public void publicWrite(String privateMessage) throws IOException {
+    public void publicWrite(String privateMessage){
         File publicFile = new File("./Eurakarte.log");
-        PrintWriter public_Write = new PrintWriter(publicFile);
-        public_Write.write(privateMessage);
-        public_Write.close();
+        PrintWriter public_Write = null;
+        try {
+            public_Write = new PrintWriter(publicFile);
+            public_Write.write(privateMessage);
+            public_Write.close();
+        } catch (FileNotFoundException e) {
+            systemExceptionHandler.writeSystemLog(e);
+            customExceptionHandler.handleException(e);
+        }
+
     }
 }
